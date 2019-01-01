@@ -1,18 +1,14 @@
 import numpy as np
 import csv
 
-# file_name = '제5회 Big Data Competition-분석용데이터-01.Pruduct.csv'
-# file_name = '제5회 Big Data Competition-분석용데이터-02.Search1.csv'
-# file_name = '제5회 Big Data Competition-분석용데이터-03.Search2.csv'
-# file_name = '제5회 Big Data Competition-분석용데이터-04.Custom.csv'
-# file_name = '제5회 Big Data Competition-분석용데이터-05.Session.csv'
-file_name = '제5회 Big Data Competition-분석용데이터-06.Master.csv'
+### 구매내역
+file_name = '제5회 Big Data Competition-분석용데이터-01.Pruduct.csv'
 
 f = open(file_name, 'rt', encoding='UTF8')
 reader = csv.reader(f)
 datas = list(reader)
 
-out_file_name = 'productlist_00.csv'
+out_file_name = 'purchase_list.csv'
 fo = open(out_file_name, 'w', encoding='UTF8', newline='')
 wr = csv.writer(fo)
 
@@ -20,9 +16,29 @@ check = 0
 product_num = 0
 for line in datas:
     check = 0
-    # line_ = [line[0], line[3], line[-2], line[-1]]
-    # wr.writerow(line_)
-    # product_num += 1
+    line_ = [line[0], line[3], line[-2], line[-1]]
+    wr.writerow(line_)
+    product_num += 1
+
+print(product_num)
+f.close()
+fo.close()
+
+###제품항목
+file_name = '제5회 Big Data Competition-분석용데이터-06.Master.csv'
+
+f = open(file_name, 'rt', encoding='UTF8')
+reader = csv.reader(f)
+datas = list(reader)
+
+out_file_name = 'product_list.csv'
+fo = open(out_file_name, 'w', encoding='UTF8', newline='')
+wr = csv.writer(fo)
+
+check = 0
+product_num = 0
+for line in datas:
+    check = 0
     if line[2] == '여성의류' or line[2] == '패션잡화':
         for s in line:
             if "남성" in s:
@@ -41,9 +57,3 @@ for line in datas:
 print(product_num)
 f.close()
 fo.close()
-
-
-
-
-
-dbg = 0
