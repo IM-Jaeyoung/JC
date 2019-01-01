@@ -12,14 +12,17 @@ f = open(file_name, 'rt', encoding='UTF8')
 reader = csv.reader(f)
 datas = list(reader)
 
-out_file_name = 'product_list_.csv'
-fo = open(out_file_name, 'w', newline='')
+out_file_name = 'productlist_00.csv'
+fo = open(out_file_name, 'w', encoding='UTF8', newline='')
 wr = csv.writer(fo)
 
 check = 0
 product_num = 0
 for line in datas:
     check = 0
+    # line_ = [line[0], line[3], line[-2], line[-1]]
+    # wr.writerow(line_)
+    # product_num += 1
     if line[2] == '여성의류' or line[2] == '패션잡화':
         for s in line:
             if "남성" in s:
@@ -31,6 +34,7 @@ for line in datas:
         if check == 0:
             line_ = line[1].split(' - ')
             line[1] = line_[-1]
+            line.append(line_[0:-1])
             wr.writerow(line)
             product_num += 1
 
